@@ -643,18 +643,24 @@ class auth_plugin_authshibboleth extends DokuWiki_Auth_Plugin
          * Groups "post-processing"
          */
         foreach ($sourceGroups as $group) {
+		$goodgroup = '';
             if (isset($sourceOptions['map'])) {
                 $map = $sourceOptions['map'];
                 if (isset($map[$group])) {
                     $group = $map[$group];
+                    $goodgroup = $group;
                 }
             }
             
             if (isset($sourceOptions['prefix'])) {
-                $group = $sourceOptions['prefix'] . $group;
+                $group = $sourceOptions['prefix'] . $goodgroup;
             }
-            
-            $groups[] = $group;
+           if (isset($sourceOptions['map'])) {
+		$groups[] = $goodgroup;
+	   }
+	   else {
+              $groups[] = $goodgroup;
+	   }
         }
         
         return $groups;
