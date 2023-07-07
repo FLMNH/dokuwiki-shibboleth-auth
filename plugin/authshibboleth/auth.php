@@ -659,7 +659,7 @@ class auth_plugin_authshibboleth extends DokuWiki_Auth_Plugin
 		$groups[] = $goodgroup;
 	   }
 	   else {
-              $groups[] = $goodgroup;
+              $groups[] = $group;
 	   }
         }
         
